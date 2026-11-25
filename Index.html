@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStudy AI</title>
+    <style>
+     body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #dbeafe, #e9d5ff);
+    text-align: center;
+    padding: 40px 15px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 12px 30px rgba(49,86,201,0.18);
+}
+
+h1 {
+    color: #3156c9;
+    font-size: 28px;
+}
+
+p {
+    color: #444;
+    font-size: 16px;
+}
+
+input, select {
+    padding: 12px;
+    width: 85%;
+    margin: 12px 0;
+    border: 2px solid #6366f1;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+button {
+    padding: 13px 25px;
+    background: linear-gradient(90deg, #6366f1, #9333ea);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background: #203fa5;
+}  
+ .tips {
+    background: #f3e8ff;
+    padding: 15px;
+    margin-top: 25px;
+    border-radius: 15px;
+    text-align: center;
+}
+.motivation {
+    background: #ede9fe;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+.progress {
+    background: #dbeafe;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+button {
+    background: linear-gradient(45deg, #4e54c8, #8f94fb);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 8px;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #203fa5;
+    transform: scale(1.03);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h1>🎓 Welcome to SmartStudy AI 📚</h1>
+       <p>Your Personal AI Learning Assistant</p>
+       <p>✨ Learn Smart, Learn Easy!</p>
+        <p>🎯 Choose Your Subject:</p>
+        <select id="subject">
+    <option value="">Choose Subject</option>
+    <option value="java">Java</option>
+    <option value="math">Maths</option>
+    <option value="science">Science</option>
+    <option value="english">English</option>
+</select>
+<br>
+<p>Now enter your topic and start learning!</p>
+        <p>Your Personal AI Study Tutor</p>
+        <p>What topic do you want to learn today?</p>
+        <p>📚 Enter Your Topic:</p>
+        <input type="text" id="topic" placeholder="📖 Enter your study topic">
+        <br>
+        <button onclick="startLearning()">🚀 Start Learning</button>
+        <div class="notes">
+    <h3>📚 Study Notes</h3>
+    <p id="studyNotes">Your study notes will appear here!</p>
+    <button onclick="showNotes()">📚 Show Study Notes</button>
+    <button onclick="studyAssistant()">🤖 AI Study Assistant</button>
+</div>
+    </div>
+    <div class="tips">
+    <h3>💡 Study Tips</h3>
+    <p>1. Study every day.</p>
+    <p>2. Practice what you learn.</p>
+    <p>3. Take short breaks.</p>
+</div>
+<div class="motivation">
+    <h3>⭐ Daily Motivation</h3>
+    <p>Believe in yourself. Keep learning and never give up!</p>
+    <p>🌟 Every day is a new chance to learn!</p>
+</div>
+<div class="progress">
+    <h3>📊 My Learning Progress</h3>
+    <p id="progressScore">Your score will appear here!</p>
+    <p id="quizCount">Total Quizzes Completed: 0</p>
+    <p>🎯 Your goal: Complete all quizzes</p>
+</div>
+
+   <script>
+    let completedQuizzes = Number(localStorage.getItem("completedQuizzes")) || 0;
+    document.querySelector("#quizCount").textContent =
+    "Total Quizzes Completed: " + completedQuizzes;
+  function showNotes() {
+    let subject = document.querySelector("#subject").value;
+    let topic = document.querySelector("#topic").value;
+    let notes = "";
+
+    if (subject === "java") {
+        notes = "Java is an object-oriented programming language. It is used to create software and applications. Practice variables, loops and classes.";
+    } else if (subject === "math") {
+        notes = "Mathematics helps us solve problems. Learn formulas, practice calculations and understand basic concepts.";
+    } else if (subject === "science") {
+        notes = "Science helps us understand the world. Learn basic concepts of Physics, Chemistry and Biology.";
+    } else if (subject === "english") {
+        notes = "English improves communication. Practice grammar, vocabulary, reading and writing every day.";
+    }
+
+    document.querySelector("#studyNotes").textContent =
+        "Topic: " + topic + " | " + notes;
+}
+function studyAssistant() {
+    let topic = document.querySelector("#topic").value;
+
+    if (topic.trim() === "") {
+        alert("Please enter a topic first!");
+        return;
+    }
+
+    alert("Let's learn " + topic + "! Read your study notes and practice questions.");
+}
+    function startLearning() {
+    let subject = document.querySelector("#subject").value;
+    let topic = document.querySelector("#topic").value;
+    
+    let score = 0;
+
+    if (!subject || topic.trim() === "") {
+        alert("Please select a subject and enter a topic!");
+        return;
+    }
+
+    alert("Welcome! Let's learn " + topic);
+if (subject === "java") {
+    let a1 = prompt("Java is a programming language? Yes or No");
+    if (a1 && a1.toLowerCase() === "yes") {
+        score++;
+        alert("Correct!");
+    } else 
+        alert("Wrong! Correct answer is Yes.");
+    
+
+    let a2 = prompt("What is 2 + 3?");
+    if (a2 === "5") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is 5.");
+    }
+
+} else if (subject === "math") {
+    let a1 = prompt("What is 2 + 2?");
+    if (a1 === "4") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is 4.");
+    }
+
+    let a2 = prompt("What is 5 + 5?");
+    if (a2 === "10") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is 10.");
+    }
+
+} else if (subject === "science") {
+    let a1 = prompt("What is the chemical formula of water?");
+    if (a1 && a1.toUpperCase() === "H2O") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is H2O.");
+    }
+
+    let a2 = prompt("Which planet is known as the Red Planet?");
+    if (a2 && a2.toLowerCase() === "mars") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is Mars.");
+    }
+
+} else if (subject === "english") {
+    let a1 = prompt("What is the plural of Book?");
+    if (a1 && a1.toLowerCase() === "books") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is Books.");
+    }
+
+    let a2 = prompt("What is the opposite of Hot?");
+    if (a2 && a2.toLowerCase() === "cold") {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! Correct answer is Cold.");
+    }
+}
+completedQuizzes++;
+localStorage.setItem("completedQuizzes", completedQuizzes);
+document.querySelector("#quizCount").textContent =
+    "Total Quizzes Completed: " + completedQuizzes;
+alert("Your final score is: " + score + "/2");
+document.querySelector("#progressScore").textContent =
+    "Your latest quiz score: " + score + "/2";
+}
+</script>
+</body>
+</html>
